@@ -1,7 +1,7 @@
-import React from 'react'
 import Hero from '../components/Hero'
 import UploadCard from '../components/UploadCard'
 import { useHeadshot } from '../hooks/use-headshot'
+import { AdvancedImage, lazyload, placeholder } from '@cloudinary/react'
 
 const Home = () => {
 
@@ -25,6 +25,21 @@ const Home = () => {
               onUploadSuccess={headshot.handleUploadSuccess}
               onUploadError={headshot.handleUploadError}
             />
+
+            {headshot.originalImage && (
+                <section>
+                    <div>
+                        <h2>Original Upload</h2>
+                        <AdvancedImage  // Cloudinary React component to display the original image from 
+                           cldImg={headshot.originalImage}
+                           plugins={[placeholder({ mode: 'blur' }), lazyload()]}
+                           alt="Original Upload"
+                           className="mx-auto rounded-xl shadow-lg"
+                        />
+                    </div>
+                </section>
+            )
+            }
 
         </div>
     )

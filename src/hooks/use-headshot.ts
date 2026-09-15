@@ -1,6 +1,7 @@
-import { useState } from "react"
+import { useMemo, useState } from "react"
 import type { UploadStatus } from "../types"
 import type { CloudinaryUploadResult } from "../cloudinary/UploadWidget";
+import { buildOriginalPreview } from "../lib/transformations";
 
 // this is a custom hook that manages the state of the upload process
 export function useHeadshot() {
@@ -34,12 +35,19 @@ export function useHeadshot() {
         setUploadError(error.message);
     }
 
+    const originalImage = useMemo(() => {
+        if(!publicId) return null;
+
+        return buildOriginalPreview(publicId);
+        
+    }, [publicId])
 
     return {
         uploadStatus,
         uploadError,
         handleUploadStart,
         handleUploadSuccess,
-        handleUploadError
+        handleUploadError,
+        originalImage,
     }
 }
