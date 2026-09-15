@@ -22,6 +22,7 @@ const Home = () => {
               uploadStatus={headshot.uploadStatus}
               uploadError={headshot.uploadError}
               onUploadStart={headshot.handleUploadStart}
+              onUploadSuccess={headshot.handleUploadSuccess}
               onUploadError={headshot.handleUploadError}
             />
 
