@@ -104,3 +104,8 @@ export function buildOriginalPreview(publicId: string) : CloudinaryImage {
     .delivery(format(auto()))
     .delivery(quality(autoQuality()))  
 }
+
+
+export function getPresetById(id: string): HeadshotPreset | undefined {
+  return ALL_PRESETS.find((p) => p.id === id)
+}

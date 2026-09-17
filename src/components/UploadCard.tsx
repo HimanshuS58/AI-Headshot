@@ -1,10 +1,10 @@
-import { ImageIcon } from 'lucide-react'
+import { AlertCircle, ImageIcon } from 'lucide-react'
 import type { UploadStatus } from '../types';
 import { useDropzone } from 'react-dropzone';
 import { cn } from '../lib/utils';
 import { useState } from 'react';
 import { UploadImageToCloudinary } from '../cloudinary/upload-direct';
-import type { CloudinaryUploadResult } from '../cloudinary/UploadWidget';
+import { UploadWidget, type CloudinaryUploadResult } from '../cloudinary/UploadWidget';
 
 
 interface UploadCardProps {
@@ -96,6 +96,26 @@ const UploadCard = ({
                             <p>Uploading...{progress > 0 ? `${progress}%` : ''}</p>
                         </div>
                     )}
+
+                    <div 
+                      className='flex items-center gap-3'
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                        <UploadWidget
+                         onUploadSuccess={onUploadSuccess}
+                         onUploadError={onUploadError}
+                         buttonText="Browse files"
+                        />
+                    </div>
+
+                    {
+                        uploadError && (
+                            <div className='bg-red-500/10 px-4 py-2 text-sm text-red-400'>
+                                <AlertCircle className='h-4 w-4' />
+                                {uploadError}
+                            </div>
+                        )
+                    }
                 </div>
             </div>
         </section>

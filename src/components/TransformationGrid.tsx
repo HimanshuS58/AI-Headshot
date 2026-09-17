@@ -1,6 +1,8 @@
 import { AdvancedImage, lazyload, placeholder } from "@cloudinary/react";
 import type { HeadshotPreset } from "../types";
 import type { CloudinaryImage } from "@cloudinary/url-gen/assets/CloudinaryImage";
+import { cn } from "../lib/utils";
+import { Check } from "lucide-react";
 
 
 interface PresetImage {
@@ -11,24 +13,41 @@ interface PresetImage {
 interface TransformationGridProps {
     title: string,
     presets: PresetImage[],
+    selectedPresetId: string | null,
+    onSelect: (id: string) => void
 }
 
 
 function PresetCard({
     preset,
-    image
+    image,
+    isSelected,
+    onSelect
 }: {
     preset: HeadshotPreset
     image: CloudinaryImage
+    isSelected: boolean
+    onSelect: () => void
 }) {
     return (
-        <button>
-            <div className="relative aspect-4/5 w-full overflow-hidden bg-black/30">
+        <button onClick={onSelect}>
+            <div className={cn(
+                "relative aspect-4/5 w-full overflow-hidden bg-black/30 border-1 rounded-xl",
+                isSelected ? "border-indigo-500" : "border-transparent"
+            )}>
                 <AdvancedImage
                     cldImg={image}
                     plugins={[placeholder({ mode: 'blur' }), lazyload()]}
                     alt="Original Upload"
                     className="mx-auto rounded-xl shadow-lg" />
+
+                {
+                    isSelected && (
+                        <div className="absolute right-2 top-2 rounded-full bg-indigo-600 p-1">
+                            <Check className="h-4 w-4 text-white" />
+                        </div>
+                    )
+                }    
             </div>
 
             <div className="p-4">
@@ -42,6 +61,8 @@ function PresetCard({
 export default function TransformationGrid({
     title,
     presets,
+    selectedPresetId,
+    onSelect
 }: TransformationGridProps) {
 
     if (presets.length === 0) return null;
@@ -62,6 +83,8 @@ export default function TransformationGrid({
                             <PresetCard
                                 preset={preset}
                                 image={image}
+                                isSelected={selectedPresetId === preset.id}
+                                onSelect={() => onSelect(preset.id)}
                             />
                         ))
                     }

@@ -47,6 +47,8 @@ const Home = () => {
                 <TransformationGrid 
                    title="AI Headshot Styles"
                    presets={headshot.presetImages}
+                   selectedPresetId={headshot.selectedPresetId}
+                   onSelect={headshot.selectPreset}
                 />
             )}
 
