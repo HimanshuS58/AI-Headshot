@@ -1,4 +1,5 @@
 import Hero from '../components/Hero'
+import TransformationGrid from '../components/TransformationGrid'
 import UploadCard from '../components/UploadCard'
 import { useHeadshot } from '../hooks/use-headshot'
 import { AdvancedImage, lazyload, placeholder } from '@cloudinary/react'
@@ -26,7 +27,7 @@ const Home = () => {
               onUploadError={headshot.handleUploadError}
             />
 
-            {headshot.originalImage && (
+            {headshot.hasUpload && headshot.originalImage && (
                 <section>
                     <div>
                         <h2>Original Upload</h2>
@@ -40,6 +41,14 @@ const Home = () => {
                 </section>
             )
             }
+
+
+            {headshot.hasUpload && (
+                <TransformationGrid 
+                   title="AI Headshot Styles"
+                   presets={headshot.presetImages}
+                />
+            )}
 
         </div>
     )
