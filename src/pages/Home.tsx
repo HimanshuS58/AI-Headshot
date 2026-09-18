@@ -1,3 +1,4 @@
+import ExportActions from '../components/ExportActions'
 import Hero from '../components/Hero'
 import ResultPreview from '../components/ResultPreview'
 import TransformationGrid from '../components/TransformationGrid'
@@ -53,12 +54,24 @@ const Home = () => {
                 />
             )}
 
-
-            <ResultPreview 
-               originalImage={headshot.originalImage}
-               selectedImage={headshot.selectedImage}
-               selectedPreset={headshot.selectedPreset}
+       
+            {headshot.hasUpload && (
+                <ResultPreview 
+                  originalImage={headshot.originalImage}
+                  selectedImage={headshot.selectedImage}
+                  selectedPreset={headshot.selectedPreset}
             />
+            )}
+
+           {
+            headshot.hasUpload && headshot.publicId && headshot.selectedPreset && (
+                <ExportActions 
+                  publicId={headshot.publicId}
+                  selectedPreset={headshot.selectedPreset}
+                />
+            )
+           }
+
         </div>
     )
 }

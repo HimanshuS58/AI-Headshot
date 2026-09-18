@@ -78,5 +78,6 @@ export function useHeadshot() {
         selectedPresetId,
         selectedPreset,
         selectedImage,
+        publicId,
     }
 }

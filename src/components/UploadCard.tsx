@@ -9,7 +9,7 @@ import { UploadWidget, type CloudinaryUploadResult } from '../cloudinary/UploadW
 
 interface UploadCardProps {
     uploadStatus: UploadStatus;
-    uploadError: 'string' | null;
+    uploadError: string | null;
     onUploadStart: () => void;
     onUploadError: (error: Error) => void;
     onUploadSuccess: (result: CloudinaryUploadResult) => void;

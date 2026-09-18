@@ -5,7 +5,7 @@ import { autoGravity } from "@cloudinary/url-gen/qualifiers/gravity";
 import { format, quality } from "@cloudinary/url-gen/actions/delivery";
 import { auto } from "@cloudinary/url-gen/qualifiers/format";
 import { auto as autoQuality } from "@cloudinary/url-gen/qualifiers/quality";
-import type { HeadshotPreset } from "../types";
+import type { ExportFormat, HeadshotPreset } from "../types";
 import { generativeBackgroundReplace, generativeReplace } from "@cloudinary/url-gen/actions/effect";
 
 
@@ -108,4 +108,40 @@ export function buildOriginalPreview(publicId: string) : CloudinaryImage {
 
 export function getPresetById(id: string): HeadshotPreset | undefined {
   return ALL_PRESETS.find((p) => p.id === id)
+}
+
+// This function generates the transformation chain for the selected preset and publicId, ensuring that the publicId is not included in the final transformation chain.
+export function getExportTransformationChain(selectedPreset: HeadshotPreset, publicId: string) {
+  const url = selectedPreset.build(publicId).toURL();
+  const marker = "/image/upload/";
+  const rest = url.split(marker)[1]?.split("?")[0] ?? "";
+  let path = rest.replace(/^v\d+\//, "");
+  const suffix = `/${publicId}`;
+  if (path.endsWith(suffix)) {
+    return path.slice(0, -suffix.length);
+  }
+  return selectedPreset.transformationChain;
+}
+
+
+// This function generates the export URL for the selected preset, publicId, and format. It uses the Cloudinary cloud name from the environment variables to construct the URL.
+export function getExportUrl(
+  publicId: string,
+  selectedPreset: HeadshotPreset,
+  format: ExportFormat
+): string {
+
+  const cloudname = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
+
+  if(!cloudname) {
+    throw new Error("Cloudinary cloud name is not configured.");
+  }
+
+  let chain = getExportTransformationChain(selectedPreset, publicId);
+
+  if(chain.endsWith("/")) chain = chain.slice(0, -1);
+
+  chain = chain.replace(/\/f_auto\//, `/f_${format}/`);
+
+  return `https://res.cloudinary.com/${cloudname}/image/upload/${chain}/${publicId}.${format}`; // Construct the final export URL with the specified format.
 }
