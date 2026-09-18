@@ -55,9 +55,15 @@ export function useHeadshot() {
 
 
     const selectedPreset = selectedPresetId ? (getPresetById(selectedPresetId) ?? null) : null
-    
 
 
+    const selectedImage = useMemo(() => {
+
+        if(!publicId || !selectedPreset) return null;
+
+        return selectedPreset.build(publicId);
+        
+    }, [publicId, selectedPreset])
 
     return {
         uploadStatus,
@@ -70,5 +76,7 @@ export function useHeadshot() {
         hasUpload: Boolean(publicId),
         selectPreset: setSelectedPresetId,
         selectedPresetId,
+        selectedPreset,
+        selectedImage,
     }
 }

@@ -1,4 +1,5 @@
 import Hero from '../components/Hero'
+import ResultPreview from '../components/ResultPreview'
 import TransformationGrid from '../components/TransformationGrid'
 import UploadCard from '../components/UploadCard'
 import { useHeadshot } from '../hooks/use-headshot'
@@ -52,6 +53,12 @@ const Home = () => {
                 />
             )}
 
+
+            <ResultPreview 
+               originalImage={headshot.originalImage}
+               selectedImage={headshot.selectedImage}
+               selectedPreset={headshot.selectedPreset}
+            />
         </div>
     )
 }
