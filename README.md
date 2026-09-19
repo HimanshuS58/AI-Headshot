@@ -1,3 +1,6 @@
+# URL
+https://ai-headshot-8kq3.onrender.com
+
 # ai-headshot-app
 
 A Cloudinary React + Vite + TypeScript project scaffolded with [create-cloudinary-react](https://github.com/cloudinary-devs/create-cloudinary-react).
@@ -45,3 +48,22 @@ This project includes AI coding rules for your selected AI assistant(s). The rul
 - [Cloudinary React SDK Docs](https://cloudinary.com/documentation/react_integration)
 - [Vite Documentation](https://vite.dev)
 - [React Documentation](https://react.dev)
+
+
+# Output
+<img width="1897" height="856" alt="Screenshot 2026-09-19 220312" src="https://github.com/user-attachments/assets/356a8d08-f720-47c3-918e-d6121ee5ffae" />
+
+<img width="1888" height="677" alt="Screenshot 2026-09-19 220341" src="https://github.com/user-attachments/assets/8d977e2d-f89b-45f9-9e9d-ee5a689d3a62" />
+
+<img width="1881" height="811" alt="Screenshot 2026-09-19 220630" src="https://github.com/user-attachments/assets/3d7fec2b-e769-4f91-8402-78212e814c97" />
+
+<img width="1891" height="852" alt="Screenshot 2026-09-19 220652" src="https://github.com/user-attachments/assets/0fbff0c6-587e-403d-a61d-8bc71a20a780" />
+
+<img width="1852" height="838" alt="Screenshot 2026-09-19 220732" src="https://github.com/user-attachments/assets/d7a7ca1a-4412-4e40-af96-dc78f2c0341c" />
+
+<img width="1881" height="555" alt="Screenshot 2026-09-19 220753" src="https://github.com/user-attachments/assets/d3b3cff9-fb76-493b-ad98-ca314e00ffe1" />
+
+
+
+
+
