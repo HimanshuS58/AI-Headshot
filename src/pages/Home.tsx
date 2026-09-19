@@ -21,23 +21,23 @@ const Home = () => {
 
             <Hero />
 
-            <UploadCard 
-              uploadStatus={headshot.uploadStatus}
-              uploadError={headshot.uploadError}
-              onUploadStart={headshot.handleUploadStart}
-              onUploadSuccess={headshot.handleUploadSuccess}
-              onUploadError={headshot.handleUploadError}
+            <UploadCard
+                uploadStatus={headshot.uploadStatus}
+                uploadError={headshot.uploadError}
+                onUploadStart={headshot.handleUploadStart}
+                onUploadSuccess={headshot.handleUploadSuccess}
+                onUploadError={headshot.handleUploadError}
             />
 
             {headshot.hasUpload && headshot.originalImage && (
-                <section>
-                    <div>
-                        <h2>Original Upload</h2>
+                <section className="px-4 py-8">
+                    <div className="mx-auto max-w-md text-center">
+                        <h2 className="mb-4 text-xl font-semibold">Original Upload</h2>
                         <AdvancedImage  // Cloudinary React component to display the original image from 
-                           cldImg={headshot.originalImage}
-                           plugins={[placeholder({ mode: 'blur' }), lazyload()]}
-                           alt="Original Upload"
-                           className="mx-auto rounded-xl shadow-lg"
+                            cldImg={headshot.originalImage}
+                            plugins={[placeholder({ mode: 'blur' }), lazyload()]}
+                            alt="Original Upload"
+                            className="mx-auto rounded-xl shadow-lg"
                         />
                     </div>
                 </section>
@@ -46,31 +46,31 @@ const Home = () => {
 
 
             {headshot.hasUpload && (
-                <TransformationGrid 
-                   title="AI Headshot Styles"
-                   presets={headshot.presetImages}
-                   selectedPresetId={headshot.selectedPresetId}
-                   onSelect={headshot.selectPreset}
+                <TransformationGrid
+                    title="AI Headshot Styles"
+                    presets={headshot.presetImages}
+                    selectedPresetId={headshot.selectedPresetId}
+                    onSelect={headshot.selectPreset}
                 />
             )}
 
-       
+
             {headshot.hasUpload && (
-                <ResultPreview 
-                  originalImage={headshot.originalImage}
-                  selectedImage={headshot.selectedImage}
-                  selectedPreset={headshot.selectedPreset}
-            />
+                <ResultPreview
+                    originalImage={headshot.originalImage}
+                    selectedImage={headshot.selectedImage}
+                    selectedPreset={headshot.selectedPreset}
+                />
             )}
 
-           {
-            headshot.hasUpload && headshot.publicId && headshot.selectedPreset && (
-                <ExportActions 
-                  publicId={headshot.publicId}
-                  selectedPreset={headshot.selectedPreset}
-                />
-            )
-           }
+            {
+                headshot.hasUpload && headshot.publicId && headshot.selectedPreset && (
+                    <ExportActions
+                        publicId={headshot.publicId}
+                        selectedPreset={headshot.selectedPreset}
+                    />
+                )
+            }
 
         </div>
     )
