@@ -60,7 +60,6 @@ This project includes AI coding rules for your selected AI assistant(s). The rul
 <img width="1891" height="852" alt="Screenshot 2026-09-19 220652" src="https://github.com/user-attachments/assets/0fbff0c6-587e-403d-a61d-8bc71a20a780" />
 
 <img width="1852" height="838" alt="Screenshot 2026-09-19 220732" src="https://github.com/user-attachments/assets/d7a7ca1a-4412-4e40-af96-dc78f2c0341c" />
-
 <img width="1881" height="555" alt="Screenshot 2026-09-19 220753" src="https://github.com/user-attachments/assets/d3b3cff9-fb76-493b-ad98-ca314e00ffe1" />
 
 
